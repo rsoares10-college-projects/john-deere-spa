@@ -1,3 +1,4 @@
+import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 
 class UserView extends StatefulWidget {
@@ -12,6 +13,7 @@ class _UserViewState extends State<UserView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: SizedBox(),
         elevation: 0,
       ),
       body: Container(
@@ -35,6 +37,16 @@ class _UserViewState extends State<UserView> {
               child: Container(),
             ),
           ],
+        ),
+      ),
+      floatingActionButton: Align(
+        alignment: Alignment(0.65, 0.95),
+        child: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(
+            FontAwesomeIcons.plus,
+            color: Colors.white,
+          ),
         ),
       ),
     );
