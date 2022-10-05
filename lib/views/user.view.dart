@@ -1,6 +1,8 @@
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 
+import '../dialogs/open-ticket.dialog.dart';
+
 class UserView extends StatefulWidget {
   const UserView({Key? key}) : super(key: key);
 
@@ -9,6 +11,9 @@ class UserView extends StatefulWidget {
 }
 
 class _UserViewState extends State<UserView> {
+  final _shortDescriptionTextEditingController = TextEditingController();
+  final _descriptionTextEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +47,13 @@ class _UserViewState extends State<UserView> {
       floatingActionButton: Align(
         alignment: Alignment(0.65, 0.95),
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            showOpenTicketDialog(
+              context,
+              _shortDescriptionTextEditingController,
+              _descriptionTextEditingController,
+            );
+          },
           child: Icon(
             FontAwesomeIcons.plus,
             color: Colors.white,
