@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:john_deere_spa/models/ticket.model.dart';
 
-void showOpenTicketDialog(BuildContext context, shortDescriptionController, descriptionController) {
+void showOpenTicketDialog(
+  BuildContext context,
+  shortDescriptionController,
+  descriptionController,
+  store,
+) {
   showDialog(
     context: context,
     builder: (_) => AlertDialog(
@@ -53,7 +59,13 @@ void showOpenTicketDialog(BuildContext context, shortDescriptionController, desc
                 ElevatedButton(onPressed: () => Navigator.pop(context), child: Text('Cancelar')),
                 SizedBox(width: 25),
                 ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      final ticket = TicketModel(
+                        name: shortDescriptionController.text,
+                        description: descriptionController.text,
+                      );
+                      final ticketResponse = await store.openTicket(ticket);
+                      print(ticketResponse);
                       Navigator.pop(context);
                     },
                     child: Text('Confirmar')),

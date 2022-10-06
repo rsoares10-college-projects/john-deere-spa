@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:john_deere_spa/stores/user-view.store.dart';
 import 'package:john_deere_spa/views/landing.view.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  // Load environment variables
+  await dotenv.load(fileName: '.env');
+
   runApp(const MyApp());
 }
 
@@ -10,13 +16,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'John Deere SPA App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.lightGreen,
+    return MultiProvider(
+      providers: [
+        Provider<UserViewStore>(create: (_) => UserViewStore()),
+      ],
+      child: MaterialApp(
+        title: 'John Deere SPA App',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.lightGreen,
+        ),
+        home: LandingView(),
       ),
-      home: LandingView(),
     );
   }
 }

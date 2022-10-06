@@ -1,5 +1,7 @@
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:john_deere_spa/stores/user-view.store.dart';
+import 'package:provider/provider.dart';
 
 import '../dialogs/open-ticket.dialog.dart';
 
@@ -13,6 +15,14 @@ class UserView extends StatefulWidget {
 class _UserViewState extends State<UserView> {
   final _shortDescriptionTextEditingController = TextEditingController();
   final _descriptionTextEditingController = TextEditingController();
+
+  late final UserViewStore store;
+
+  @override
+  void didChangeDependencies() {
+    store = Provider.of<UserViewStore>(context);
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +62,7 @@ class _UserViewState extends State<UserView> {
               context,
               _shortDescriptionTextEditingController,
               _descriptionTextEditingController,
+              store,
             );
           },
           child: Icon(
