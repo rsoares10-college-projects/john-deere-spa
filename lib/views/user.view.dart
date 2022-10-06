@@ -24,7 +24,7 @@ class _UserViewState extends State<UserView> {
   @override
   void didChangeDependencies() async {
     _store = Provider.of<UserViewStore>(context);
-    // await _store.getAllTickets();
+    await _store.getAllTickets();
 
     super.didChangeDependencies();
   }
@@ -33,8 +33,14 @@ class _UserViewState extends State<UserView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: SizedBox(),
         elevation: 0,
+        leading: SizedBox(),
+        actions: [
+          Icon(
+            Icons.refresh,
+            color: Colors.white,
+          ),
+        ],
       ),
       body: Container(
         child: Row(
@@ -43,14 +49,16 @@ class _UserViewState extends State<UserView> {
               child: Container(),
             ),
             Expanded(
-              flex: 5,
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border(
-                      left: BorderSide(color: Colors.greenAccent),
-                      right: BorderSide(color: Colors.greenAccent),
-                    ),
-                    color: Colors.white),
+              flex: 4,
+              child: Card(
+                elevation: 1.0,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    color: Colors.greenAccent,
+                    width: 0.5,
+                  ),
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
                 child: Column(
                   children: <Widget>[
                     UserViewTicketHeader(),

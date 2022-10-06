@@ -7,71 +7,68 @@ class UserViewTicketHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ConstrainedBox(
       constraints: BoxConstraints(maxHeight: 40.0),
-      height: double.infinity,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.greenAccent,
-      ),
-      child: Row(
-        children: <Widget>[
-          HeaderTile(
-            header: 'Data',
-            widthConstraint: 90.0,
-            border: Border(
-              right: BorderSide(color: Colors.greenAccent, width: 1.0),
-              bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
-            ),
+      child: Card(
+        elevation: 1.0,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: Colors.greenAccent,
+            width: 0.8,
           ),
-          HeaderTile(
-            header: 'Time',
-            widthConstraint: 120.0,
-            border: Border(
-              right: BorderSide(color: Colors.greenAccent, width: 1.0),
-              bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+          borderRadius: BorderRadius.circular(3.0),
+        ),
+        child: Row(
+          children: <Widget>[
+            HeaderTile(
+              header: 'Date',
+              widthConstraint: 90.0,
+              border: Border(
+                right: BorderSide(color: Colors.greenAccent, width: 1.0),
+              ),
             ),
-          ),
-          HeaderTile(
-            header: 'Categoria',
-            widthConstraint: 120.0,
-            border: Border(
-              right: BorderSide(color: Colors.greenAccent, width: 1.0),
-              bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+            HeaderTile(
+              header: 'Team',
+              widthConstraint: 120.0,
+              border: Border(
+                right: BorderSide(color: Colors.greenAccent, width: 1.0),
+              ),
             ),
-          ),
-          Expanded(
-              child: HeaderTile(
-            header: 'Descrição',
-            border: Border(
-              right: BorderSide(color: Colors.greenAccent, width: 1.0),
-              bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+            HeaderTile(
+              header: 'Issue Type',
+              widthConstraint: 120.0,
+              border: Border(
+                right: BorderSide(color: Colors.greenAccent, width: 1.0),
+              ),
             ),
-          )),
-          HeaderTile(
-            header: 'Sentimento',
-            widthConstraint: 120.0,
-            border: Border(
-              right: BorderSide(color: Colors.greenAccent, width: 1.0),
-              bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+            Expanded(
+                child: HeaderTile(
+              header: 'Description',
+              border: Border(
+                right: BorderSide(color: Colors.greenAccent, width: 1.0),
+              ),
+            )),
+            HeaderTile(
+              header: 'Sentiment',
+              widthConstraint: 120.0,
+              border: Border(
+                right: BorderSide(color: Colors.greenAccent, width: 1.0),
+              ),
             ),
-          ),
-          HeaderTile(
-            header: 'Impacto',
-            widthConstraint: 100.0,
-            border: Border(
-              right: BorderSide(color: Colors.greenAccent, width: 1.0),
-              bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+            HeaderTile(
+              header: 'Impact',
+              widthConstraint: 100.0,
+              border: Border(
+                right: BorderSide(color: Colors.greenAccent, width: 1.0),
+              ),
             ),
-          ),
-          HeaderTile(
-            header: 'Urgência',
-            widthConstraint: 100.0,
-            border: Border(
-              bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+            HeaderTile(
+              header: 'Urgency',
+              widthConstraint: 100.0,
+              border: Border(),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

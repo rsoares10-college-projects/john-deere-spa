@@ -18,13 +18,14 @@ abstract class _UserViewStore with Store {
     client = Dio();
     client.options.headers['content-Type'] = 'application/json';
     client.options.headers['Access-Control-Allow-Origin'] = '*';
-    client.options.headers['Access-Control-Allow-Methods'] = 'GET , POST';
+    client.options.headers['Access-Control-Allow-Methods'] = 'GET , POST, OPTIONS';
     client.httpClientAdapter = BrowserHttpClientAdapter();
   }
 
   @action
   Future<TicketResponse> openTicket(TicketModel ticket) async {
     final response = await client.post(API.openTicket!, data: ticket.toJson());
+    print(response.data);
     return TicketResponse.fromMap(response.data);
   }
 

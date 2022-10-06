@@ -8,70 +8,77 @@ class TicketItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          TicketItemTile(
-            content: ticket.date,
-            widthConstraint: 90.0,
-            border: Border(
-              right: BorderSide(color: Colors.greenAccent, width: 1.0),
-              bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
-            ),
-          ),
-          TicketItemTile(
-            content: ticket.group,
-            widthConstraint: 120.0,
-            border: Border(
-              right: BorderSide(color: Colors.greenAccent, width: 1.0),
-              bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
-            ),
-          ),
-          TicketItemTile(
-            content: ticket.issue.name,
-            widthConstraint: 120.0,
-            border: Border(
-              right: BorderSide(color: Colors.greenAccent, width: 1.0),
-              bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
-            ),
-          ),
-          Expanded(
-            child: TicketItemTile(
-              content: ticket.description,
-              alignment: Alignment.centerLeft,
-              widthConstraint: 90.0,
-              border: Border(
-                right: BorderSide(color: Colors.greenAccent, width: 1.0),
-                bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: Builder(builder: (context) {
+        return Container(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              TicketItemTile(
+                content: ticket.date,
+                widthConstraint: 90.0,
+                border: Border(
+                  left: BorderSide(color: Colors.greenAccent, width: 1.0),
+                  right: BorderSide(color: Colors.greenAccent, width: 1.0),
+                  bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+                ),
               ),
-            ),
+              TicketItemTile(
+                content: ticket.group,
+                widthConstraint: 120.0,
+                border: Border(
+                  right: BorderSide(color: Colors.greenAccent, width: 1.0),
+                  bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+                ),
+              ),
+              TicketItemTile(
+                content: ticket.issue.name,
+                widthConstraint: 120.0,
+                border: Border(
+                  right: BorderSide(color: Colors.greenAccent, width: 1.0),
+                  bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+                ),
+              ),
+              Expanded(
+                child: TicketItemTile(
+                  content: ticket.description,
+                  alignment: Alignment.centerLeft,
+                  widthConstraint: 90.0,
+                  border: Border(
+                    right: BorderSide(color: Colors.greenAccent, width: 1.0),
+                    bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+                  ),
+                ),
+              ),
+              TicketItemTile(
+                content: ticket.sentiment.name,
+                widthConstraint: 120.0,
+                border: Border(
+                  right: BorderSide(color: Colors.greenAccent, width: 1.0),
+                  bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+                ),
+              ),
+              TicketItemTile(
+                content: ticket.urgency.toString(),
+                widthConstraint: 100.0,
+                border: Border(
+                  right: BorderSide(color: Colors.greenAccent, width: 1.0),
+                  bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+                ),
+              ),
+              TicketItemTile(
+                content: ticket.impact.toString(),
+                widthConstraint: 100.0,
+                border: Border(
+                  bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+                  right: BorderSide(color: Colors.greenAccent, width: 1.0),
+                ),
+              ),
+            ],
           ),
-          TicketItemTile(
-            content: ticket.sentiment.name,
-            widthConstraint: 120.0,
-            border: Border(
-              right: BorderSide(color: Colors.greenAccent, width: 1.0),
-              bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
-            ),
-          ),
-          TicketItemTile(
-            content: ticket.urgency.toString(),
-            widthConstraint: 100.0,
-            border: Border(
-              right: BorderSide(color: Colors.greenAccent, width: 1.0),
-              bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
-            ),
-          ),
-          TicketItemTile(
-            content: ticket.impact.toString(),
-            widthConstraint: 100.0,
-            border: Border(
-              bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
-            ),
-          ),
-        ],
-      ),
+        );
+      }),
     );
   }
 }

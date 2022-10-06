@@ -1,1 +1,1 @@
-enum SentimentType { none, positive, negative }
+enum SentimentType { none, positive, negative, neutral }

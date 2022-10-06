@@ -62,14 +62,14 @@ class TicketResponse {
 
   factory TicketResponse.fromMap(Map<String, dynamic> map) {
     return TicketResponse(
-      cluster: map['cluster'] as int,
-      date: map['date'] as String,
+      cluster: 0,
+      date: '',
       description: map['description'] as String,
       group: map['group'] as String,
-      impact: map['impact'] as int,
-      issue: IssueType.values.byName(map['issue']),
+      impact: int.parse(map['impact']),
+      issue: IssueType.values.byName(map['issue_type']),
       sentiment: SentimentType.values.byName(map['sentiment']),
-      urgency: map['urgency'] as int,
+      urgency: int.parse(map['urgency']),
     );
   }
 
