@@ -34,7 +34,7 @@ class UserViewTicketHeader extends StatelessWidget {
           ),
           HeaderTile(
             header: 'Categoria',
-            widthConstraint: 150.0,
+            widthConstraint: 120.0,
             border: Border(
               right: BorderSide(color: Colors.greenAccent, width: 1.0),
               bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
