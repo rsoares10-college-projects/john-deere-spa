@@ -11,6 +11,9 @@ class UserViewStore = _UserViewStore with _$UserViewStore;
 abstract class _UserViewStore with Store {
   late Dio client;
 
+  @observable
+  ObservableList<TicketResponse> ticketList = ObservableList();
+
   _UserViewStore() {
     client = Dio();
     client.options.headers['content-Type'] = 'application/json';
@@ -23,5 +26,13 @@ abstract class _UserViewStore with Store {
   Future<TicketResponse> openTicket(TicketModel ticket) async {
     final response = await client.post(API.openTicket!);
     return TicketResponse.fromMap(response.data);
+  }
+
+  @action
+  Future<void> getAllTickets() async {
+    final response = await client.get(API.getAllTickets!);
+    for (final ticket in response.data) {
+      ticketList.add(TicketResponse.formList(ticket));
+    }
   }
 }

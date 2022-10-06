@@ -1,6 +1,8 @@
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:john_deere_spa/stores/user-view.store.dart';
+import 'package:john_deere_spa/widgets/ticket-item.widget.dart';
 import 'package:provider/provider.dart';
 
 import '../dialogs/open-ticket.dialog.dart';
@@ -16,11 +18,13 @@ class _UserViewState extends State<UserView> {
   final _shortDescriptionTextEditingController = TextEditingController();
   final _descriptionTextEditingController = TextEditingController();
 
-  late final UserViewStore store;
+  late final UserViewStore _store;
 
   @override
-  void didChangeDependencies() {
-    store = Provider.of<UserViewStore>(context);
+  void didChangeDependencies() async {
+    _store = Provider.of<UserViewStore>(context);
+    await _store.getAllTickets();
+
     super.didChangeDependencies();
   }
 
@@ -46,6 +50,20 @@ class _UserViewState extends State<UserView> {
                     right: BorderSide(color: Colors.greenAccent),
                   ),
                 ),
+                child: Observer(
+                  builder: (context) {
+                    if (_store.ticketList.isEmpty) {
+                      return Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.lightGreenAccent,
+                        ),
+                      );
+                    }
+                    return Column(
+                      children: _store.ticketList.map<Widget>((item) => TicketItem(ticket: item)).toList(),
+                    );
+                  },
+                ),
               ),
             ),
             Expanded(
@@ -62,7 +80,7 @@ class _UserViewState extends State<UserView> {
               context,
               _shortDescriptionTextEditingController,
               _descriptionTextEditingController,
-              store,
+              _store,
             );
           },
           child: Icon(
