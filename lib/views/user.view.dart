@@ -6,6 +6,7 @@ import 'package:john_deere_spa/widgets/ticket-item.widget.dart';
 import 'package:provider/provider.dart';
 
 import '../dialogs/open-ticket.dialog.dart';
+import '../widgets/user-view-ticket-header.widget.dart';
 
 class UserView extends StatefulWidget {
   const UserView({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _UserViewState extends State<UserView> {
   @override
   void didChangeDependencies() async {
     _store = Provider.of<UserViewStore>(context);
-    await _store.getAllTickets();
+    // await _store.getAllTickets();
 
     super.didChangeDependencies();
   }
@@ -45,24 +46,31 @@ class _UserViewState extends State<UserView> {
               flex: 4,
               child: Container(
                 decoration: BoxDecoration(
-                  border: Border(
-                    left: BorderSide(color: Colors.greenAccent),
-                    right: BorderSide(color: Colors.greenAccent),
-                  ),
-                ),
-                child: Observer(
-                  builder: (context) {
-                    if (_store.ticketList.isEmpty) {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: Colors.lightGreenAccent,
-                        ),
-                      );
-                    }
-                    return Column(
-                      children: _store.ticketList.map<Widget>((item) => TicketItem(ticket: item)).toList(),
-                    );
-                  },
+                    border: Border(
+                      left: BorderSide(color: Colors.greenAccent),
+                      right: BorderSide(color: Colors.greenAccent),
+                    ),
+                    color: Colors.white),
+                child: Column(
+                  children: <Widget>[
+                    UserViewTicketHeader(),
+                    Expanded(
+                      child: Observer(
+                        builder: (context) {
+                          if (_store.ticketList.isEmpty) {
+                            return Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.lightGreenAccent,
+                              ),
+                            );
+                          }
+                          return Column(
+                            children: _store.ticketList.map<Widget>((item) => TicketItem(ticket: item)).toList(),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
