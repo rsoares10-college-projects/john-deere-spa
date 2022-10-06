@@ -24,7 +24,7 @@ class _UserViewState extends State<UserView> {
   @override
   void didChangeDependencies() async {
     _store = Provider.of<UserViewStore>(context);
-    await _store.getAllTickets();
+    // await _store.getAllTickets();
 
     super.didChangeDependencies();
   }

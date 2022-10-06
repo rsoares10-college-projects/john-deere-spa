@@ -24,7 +24,7 @@ abstract class _UserViewStore with Store {
 
   @action
   Future<TicketResponse> openTicket(TicketModel ticket) async {
-    final response = await client.post(API.openTicket!);
+    final response = await client.post(API.openTicket!, data: ticket.toJson());
     return TicketResponse.fromMap(response.data);
   }
 
