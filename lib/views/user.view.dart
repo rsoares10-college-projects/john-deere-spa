@@ -36,9 +36,17 @@ class _UserViewState extends State<UserView> {
         elevation: 0,
         leading: SizedBox(),
         actions: [
-          Icon(
-            Icons.refresh,
-            color: Colors.white,
+          Container(
+            margin: EdgeInsets.only(right: 330),
+            child: IconButton(
+              onPressed: () async {
+                await _store.getAllTickets();
+              },
+              icon: Icon(
+                Icons.refresh,
+                color: Colors.white,
+              ),
+            ),
           ),
         ],
       ),
@@ -72,15 +80,12 @@ class _UserViewState extends State<UserView> {
                               ),
                             );
                           }
-                          return SingleChildScrollView(
-                            child: Column(
-                              children: <Widget>[
-                                Padding(
+                          return Column(
+                            children: <Widget>[
+                              Expanded(
+                                child: Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 5.0),
                                   child: Container(
-                                    constraints: BoxConstraints(maxHeight: 300.0),
-                                    height: double.infinity,
-                                    width: double.infinity,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
                                         border: Border(
@@ -100,8 +105,8 @@ class _UserViewState extends State<UserView> {
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           );
                         },
                       ),
