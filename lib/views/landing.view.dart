@@ -12,9 +12,6 @@ class _LandingViewState extends State<LandingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-      ),
       body: Container(
         child: Row(
           children: <Widget>[
@@ -25,11 +22,37 @@ class _LandingViewState extends State<LandingView> {
               flex: 4,
               child: Container(
                 alignment: Alignment.center,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const UserView()));
-                  },
-                  child: Text('Organize Tickets'),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      constraints: BoxConstraints(maxHeight: 600.00, maxWidth: 600.0),
+                      height: double.infinity,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                            'images/jhon_logo.gif',
+                          ),
+                        ),
+                      ),
+                      child: Container(
+                        alignment: Alignment.bottomCenter,
+                        constraints: BoxConstraints(maxHeight: 50.0, maxWidth: 100.0),
+                        padding: EdgeInsets.only(bottom: 110.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const UserView()));
+                          },
+                          child: Text(
+                            "Solve Issues",
+                            style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

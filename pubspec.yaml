@@ -31,5 +31,5 @@ flutter:
 
   assets:
     - .env
-    # - images/a_dot_burr.jpeg
-    # - images/a_dot_ham.jpeg
+    - assets/images/jhon_logo.gif
+    - assets/images/john_logo2.gif

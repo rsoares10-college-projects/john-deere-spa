@@ -74,9 +74,11 @@ class _UserViewState extends State<UserView> {
                       child: Observer(
                         builder: (context) {
                           if (_store.ticketList.isEmpty) {
-                            return Center(
-                              child: CircularProgressIndicator(
-                                color: Colors.lightGreenAccent,
+                            return Container(
+                              child: Image.asset(
+                                'images/john_logo2.gif',
+                                width: 150,
+                                height: 150,
                               ),
                             );
                           }
