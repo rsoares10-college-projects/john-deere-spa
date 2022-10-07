@@ -111,8 +111,7 @@ void showOpenTicketDialog(
                       name: shortDescriptionController.text,
                       description: descriptionController.text,
                     );
-                    final ticketResponse = await store.openTicket(ticket);
-                    print(ticketResponse);
+                    await store.openTicket(ticket);
                     Navigator.pop(context);
                   },
                   child: Text(

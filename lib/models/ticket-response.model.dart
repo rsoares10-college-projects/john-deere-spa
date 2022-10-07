@@ -66,23 +66,30 @@ class TicketResponse {
   }
 
   factory TicketResponse.fromMap(Map<String, dynamic> map) {
-    var issueType;
     if (map['issue_type'] == 'Error Message/Abend') {
-      issueType = IssueType.values.byName('error_message_abend');
-    } else if (map['issue_type'] == 'Connectivity') {
-      issueType = IssueType.values.byName('connectivity');
-    } else {
-      issueType = IssueType.values.byName(map['issue_type']);
+      map['issue_type'] = 'error_message_abend';
+    }
+
+    if (map['issue_type'] == 'Connectivity') {
+      map['issue_type'] = 'connectivity';
+    }
+
+    if (map['urgency'] is String) {
+      map['urgency'] = int.parse(map['urgency']);
+    }
+
+    if (map['impact'] is String) {
+      map['impact'] = int.parse(map['impact']);
     }
 
     return TicketResponse(
-      id: map['id'],
+      id: map['id'] ?? 0,
       cluster: int.parse(map['cluster']),
-      dateCreation: map['date_creation'] as String,
+      dateCreation: map['date_creation'] ?? '',
       description: map['description'] as String,
       group: map['group'] as String,
       impact: map['impact'] as int,
-      issue: issueType,
+      issue: IssueType.values.byName(map['issue_type']),
       sentiment: SentimentType.values.byName(map['sentiment']),
       urgency: map['urgency'] as int,
     );
