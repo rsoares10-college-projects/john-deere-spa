@@ -32,6 +32,8 @@ abstract class _UserViewStore with Store {
 
   @action
   Future<void> getAllTickets() async {
+    ticketList.clear();
+
     final response = await client.get(API.getAllTickets!);
     for (final ticket in jsonDecode(response.data)) {
       ticketList.add(TicketResponse.fromMap(ticket));
