@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:john_deere_spa/dialogs/saved-ticket-dialog.dart';
-import 'package:john_deere_spa/dialogs/similar-ticketj.dialog.dart';
+import 'package:john_deere_spa/dialogs/similar-ticket.dialog.dart';
 import 'package:john_deere_spa/models/ticket.model.dart';
 
 final _buttonTextStyle = TextStyle(

@@ -84,42 +84,82 @@ void showSimilarTicketDialog(
                 child: Row(
                   children: <Widget>[
                     Expanded(
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
-                        alignment: Alignment.topLeft,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.greenAccent, width: 1.0),
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        child: Text(
-                          ticket.description,
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14.0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            constraints: BoxConstraints(maxHeight: 40.0),
+                            child: Text(
+                              'Current Issue',
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+                              alignment: Alignment.topLeft,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.greenAccent, width: 1.0),
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              child: Text(
+                                ticket.description,
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 14.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     SizedBox(
                       width: 10.0,
                     ),
                     Expanded(
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
-                        alignment: Alignment.topLeft,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.greenAccent, width: 1.0),
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        child: Text(
-                          similarTicket.similarTicket[1],
-                          style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14.0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            constraints: BoxConstraints(maxHeight: 40.0),
+                            child: Text(
+                              'Similar Issue',
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
+                              alignment: Alignment.topLeft,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.greenAccent, width: 1.0),
+                                borderRadius: BorderRadius.circular(5.0),
+                              ),
+                              child: Text(
+                                similarTicket.similarTicket[1],
+                                style: TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 14.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
