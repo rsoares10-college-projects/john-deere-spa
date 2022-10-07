@@ -41,6 +41,14 @@ mixin _$UserViewStore on _UserViewStore, Store {
     return _$getAllTicketsAsyncAction.run(() => super.getAllTickets());
   }
 
+  late final _$getSimilarTicketsAsyncAction =
+      AsyncAction('_UserViewStore.getSimilarTickets', context: context);
+
+  @override
+  Future<void> getSimilarTickets() {
+    return _$getSimilarTicketsAsyncAction.run(() => super.getSimilarTickets());
+  }
+
   @override
   String toString() {
     return '''

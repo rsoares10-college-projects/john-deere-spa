@@ -1,3 +1,4 @@
+import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:john_deere_spa/models/ticket-response.model.dart';
 
@@ -6,21 +7,35 @@ final _buttonTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
-void showTicketDetailsDialog(
+void showSavedTicketDialog(
   BuildContext context,
   TicketResponse ticket,
 ) {
+  DateTime dateToday = new DateTime.now();
+  String date = dateToday.toString().substring(0, 10);
+
   showDialog(
     context: context,
     builder: (_) => AlertDialog(
-      title: Text(
-        'Ticket Details',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 20.0,
-          fontWeight: FontWeight.bold,
-          color: Colors.black87,
-        ),
+      title: Row(
+        children: <Widget>[
+          Text(
+            'Ticket was Successfully Opened!',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+          SizedBox(
+            width: 20.0,
+          ),
+          Icon(
+            FontAwesomeIcons.check,
+            color: Colors.lightGreen,
+          ),
+        ],
       ),
       content: Container(
         constraints: BoxConstraints(maxHeight: 400, maxWidth: 800),
@@ -59,7 +74,7 @@ void showTicketDetailsDialog(
                             width: 20.0,
                           ),
                           Text(
-                            ticket.dateCreation,
+                            date,
                             style: TextStyle(fontSize: 18.0, color: Colors.black54, fontWeight: FontWeight.bold),
                           )
                         ],

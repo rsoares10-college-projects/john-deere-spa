@@ -37,4 +37,13 @@ abstract class _UserViewStore with Store {
       ticketList.add(TicketResponse.fromMap(ticket));
     }
   }
+
+  @action
+  Future<void> getSimilarTickets() async {
+    final response = await client.get(API.predictSimilar!);
+
+    // for (final ticket in jsonDecode(response.data)) {
+    //   ticketList.add(TicketResponse.fromMap(ticket));
+    // }
+  }
 }

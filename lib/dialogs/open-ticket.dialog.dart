@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:john_deere_spa/dialogs/saved-ticket-dialog.dart';
 import 'package:john_deere_spa/models/ticket.model.dart';
 
 final _buttonTextStyle = TextStyle(
@@ -12,6 +13,9 @@ void showOpenTicketDialog(
   descriptionController,
   store,
 ) {
+  shortDescriptionController.clear();
+  descriptionController.clear();
+
   showDialog(
     context: context,
     builder: (_) => AlertDialog(
@@ -111,8 +115,9 @@ void showOpenTicketDialog(
                       name: shortDescriptionController.text,
                       description: descriptionController.text,
                     );
-                    await store.openTicket(ticket);
+                    final ticketResponse = await store.openTicket(ticket);
                     Navigator.pop(context);
+                    showSavedTicketDialog(context, ticketResponse);
                   },
                   child: Text(
                     'Confirm',
