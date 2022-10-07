@@ -10,11 +10,12 @@ class UserViewTicketHeader extends StatelessWidget {
     return ConstrainedBox(
       constraints: BoxConstraints(maxHeight: 40.0),
       child: Card(
-        elevation: 1.0,
+        elevation: 1.5,
+        margin: EdgeInsets.fromLTRB(5.0, 3.0, 5.0, 0.0),
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            color: Colors.greenAccent,
-            width: 0.8,
+            color: Colors.teal,
+            width: 0.5,
           ),
           borderRadius: BorderRadius.circular(3.0),
         ),
@@ -24,42 +25,42 @@ class UserViewTicketHeader extends StatelessWidget {
               header: 'Date',
               widthConstraint: 90.0,
               border: Border(
-                right: BorderSide(color: Colors.greenAccent, width: 1.0),
+                right: BorderSide(color: Colors.teal, width: 0.5),
               ),
             ),
             HeaderTile(
               header: 'Team',
               widthConstraint: 120.0,
               border: Border(
-                right: BorderSide(color: Colors.greenAccent, width: 1.0),
+                right: BorderSide(color: Colors.teal, width: 0.5),
               ),
             ),
             HeaderTile(
               header: 'Issue Type',
               widthConstraint: 120.0,
               border: Border(
-                right: BorderSide(color: Colors.greenAccent, width: 1.0),
+                right: BorderSide(color: Colors.teal, width: 0.5),
               ),
             ),
             Expanded(
                 child: HeaderTile(
               header: 'Description',
               border: Border(
-                right: BorderSide(color: Colors.greenAccent, width: 1.0),
+                right: BorderSide(color: Colors.teal, width: 0.5),
               ),
             )),
             HeaderTile(
               header: 'Sentiment',
               widthConstraint: 120.0,
               border: Border(
-                right: BorderSide(color: Colors.greenAccent, width: 1.0),
+                right: BorderSide(color: Colors.teal, width: 0.5),
               ),
             ),
             HeaderTile(
               header: 'Impact',
               widthConstraint: 100.0,
               border: Border(
-                right: BorderSide(color: Colors.greenAccent, width: 1.0),
+                right: BorderSide(color: Colors.teal, width: 0.5),
               ),
             ),
             HeaderTile(
@@ -90,7 +91,7 @@ class HeaderTile extends StatelessWidget {
   final BoxBorder _border;
 
   final _textStyle = const TextStyle(
-    color: Colors.black54,
+    color: Colors.black87,
     fontSize: 16.0,
     fontWeight: FontWeight.bold,
   );
@@ -103,7 +104,7 @@ class HeaderTile extends StatelessWidget {
       width: double.infinity,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.lightGreen.shade50,
         border: _border,
       ),
       child: Text(

@@ -16,28 +16,27 @@ class TicketItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               TicketItemTile(
-                content: ticket.date,
+                content: ticket.dateCreation,
                 widthConstraint: 90.0,
                 border: Border(
-                  left: BorderSide(color: Colors.greenAccent, width: 1.0),
-                  right: BorderSide(color: Colors.greenAccent, width: 1.0),
-                  bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+                  right: BorderSide(color: Colors.teal, width: 0.5),
+                  bottom: BorderSide(color: Colors.teal, width: 0.5),
                 ),
               ),
               TicketItemTile(
                 content: ticket.group,
                 widthConstraint: 120.0,
                 border: Border(
-                  right: BorderSide(color: Colors.greenAccent, width: 1.0),
-                  bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+                  right: BorderSide(color: Colors.teal, width: 0.5),
+                  bottom: BorderSide(color: Colors.teal, width: 0.5),
                 ),
               ),
               TicketItemTile(
                 content: ticket.issue.name,
                 widthConstraint: 120.0,
                 border: Border(
-                  right: BorderSide(color: Colors.greenAccent, width: 1.0),
-                  bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+                  right: BorderSide(color: Colors.teal, width: 0.5),
+                  bottom: BorderSide(color: Colors.teal, width: 0.5),
                 ),
               ),
               Expanded(
@@ -46,8 +45,8 @@ class TicketItem extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   widthConstraint: 90.0,
                   border: Border(
-                    right: BorderSide(color: Colors.greenAccent, width: 1.0),
-                    bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+                    right: BorderSide(color: Colors.teal, width: 0.5),
+                    bottom: BorderSide(color: Colors.teal, width: 0.5),
                   ),
                 ),
               ),
@@ -55,24 +54,24 @@ class TicketItem extends StatelessWidget {
                 content: ticket.sentiment.name,
                 widthConstraint: 120.0,
                 border: Border(
-                  right: BorderSide(color: Colors.greenAccent, width: 1.0),
-                  bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+                  right: BorderSide(color: Colors.teal, width: 0.5),
+                  bottom: BorderSide(color: Colors.teal, width: 0.5),
                 ),
               ),
               TicketItemTile(
                 content: ticket.urgency.toString(),
                 widthConstraint: 100.0,
                 border: Border(
-                  right: BorderSide(color: Colors.greenAccent, width: 1.0),
-                  bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
+                  right: BorderSide(color: Colors.teal, width: 0.5),
+                  bottom: BorderSide(color: Colors.teal, width: 0.5),
                 ),
               ),
               TicketItemTile(
                 content: ticket.impact.toString(),
                 widthConstraint: 100.0,
                 border: Border(
-                  bottom: BorderSide(color: Colors.greenAccent, width: 1.0),
-                  right: BorderSide(color: Colors.greenAccent, width: 1.0),
+                  right: BorderSide(color: Colors.teal, width: 0.5),
+                  bottom: BorderSide(color: Colors.teal, width: 0.5),
                 ),
               ),
             ],

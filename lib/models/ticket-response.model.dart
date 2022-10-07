@@ -5,8 +5,9 @@ import 'package:john_deere_spa/enums/issue-type.enum.dart';
 import 'package:john_deere_spa/enums/sentiment-type.enum.dart';
 
 class TicketResponse {
+  final int id;
   final int cluster;
-  final String date;
+  final String dateCreation;
   final String description;
   final String group;
   final int impact;
@@ -15,8 +16,9 @@ class TicketResponse {
   final int urgency;
 
   TicketResponse({
+    required this.id,
     required this.cluster,
-    required this.date,
+    required this.dateCreation,
     required this.description,
     required this.group,
     required this.impact,
@@ -26,8 +28,9 @@ class TicketResponse {
   });
 
   TicketResponse copyWith({
+    int? id,
     int? cluster,
-    String? date,
+    String? dateCreation,
     String? description,
     String? group,
     int? impact,
@@ -36,8 +39,9 @@ class TicketResponse {
     int? urgency,
   }) {
     return TicketResponse(
+      id: id ?? this.id,
       cluster: cluster ?? this.cluster,
-      date: date ?? this.date,
+      dateCreation: dateCreation ?? this.dateCreation,
       description: description ?? this.description,
       group: group ?? this.group,
       impact: impact ?? this.impact,
@@ -49,8 +53,9 @@ class TicketResponse {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'id': id,
       'cluster': cluster,
-      'date': date,
+      'dateCreation': dateCreation,
       'description': description,
       'group': group,
       'impact': impact,
@@ -61,45 +66,44 @@ class TicketResponse {
   }
 
   factory TicketResponse.fromMap(Map<String, dynamic> map) {
+    var issueType;
+    if (map['issue_type'] == 'Error Message/Abend') {
+      issueType = IssueType.values.byName('error_message_abend');
+    } else if (map['issue_type'] == 'Connectivity') {
+      issueType = IssueType.values.byName('connectivity');
+    } else {
+      issueType = IssueType.values.byName(map['issue_type']);
+    }
+
     return TicketResponse(
-      cluster: 0,
-      date: '',
+      id: map['id'],
+      cluster: int.parse(map['cluster']),
+      dateCreation: map['date_creation'] as String,
       description: map['description'] as String,
       group: map['group'] as String,
-      impact: int.parse(map['impact']),
-      issue: IssueType.values.byName(map['issue_type']),
+      impact: map['impact'] as int,
+      issue: issueType,
       sentiment: SentimentType.values.byName(map['sentiment']),
-      urgency: int.parse(map['urgency']),
+      urgency: map['urgency'] as int,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory TicketResponse.fromJson(String ticket) => TicketResponse.fromMap(json.decode(ticket) as Map<String, dynamic>);
-
-  factory TicketResponse.formList(List<dynamic> ticket) {
-    return TicketResponse(
-        cluster: ticket[0],
-        date: ticket[1],
-        description: ticket[3],
-        urgency: ticket[4],
-        impact: ticket[5],
-        sentiment: SentimentType.values.byName(ticket[6]), // SentimentType.values.byName(String<sentiment name>)
-        issue: IssueType.values.byName(ticket[7]), // IssueType.values.byName(String<Issue name>)
-        group: ticket[8]);
-  }
+  factory TicketResponse.fromJson(String source) => TicketResponse.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'TicketResponse(cluster: $cluster, date: $date, description: $description, group: $group, impact: $impact, issue: $issue, sentiment: $sentiment, urgency: $urgency)';
+    return 'TicketResponse(id: $id, cluster: $cluster, dateCreation: $dateCreation, description: $description, group: $group, impact: $impact, issue: $issue, sentiment: $sentiment, urgency: $urgency)';
   }
 
   @override
   bool operator ==(covariant TicketResponse other) {
     if (identical(this, other)) return true;
 
-    return other.cluster == cluster &&
-        other.date == date &&
+    return other.id == id &&
+        other.cluster == cluster &&
+        other.dateCreation == dateCreation &&
         other.description == description &&
         other.group == group &&
         other.impact == impact &&
@@ -110,6 +114,14 @@ class TicketResponse {
 
   @override
   int get hashCode {
-    return cluster.hashCode ^ date.hashCode ^ description.hashCode ^ group.hashCode ^ impact.hashCode ^ issue.hashCode ^ sentiment.hashCode ^ urgency.hashCode;
+    return id.hashCode ^
+        cluster.hashCode ^
+        dateCreation.hashCode ^
+        description.hashCode ^
+        group.hashCode ^
+        impact.hashCode ^
+        issue.hashCode ^
+        sentiment.hashCode ^
+        urgency.hashCode;
   }
 }

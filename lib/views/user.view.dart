@@ -72,8 +72,36 @@ class _UserViewState extends State<UserView> {
                               ),
                             );
                           }
-                          return Column(
-                            children: _store.ticketList.map<Widget>((item) => TicketItem(ticket: item)).toList(),
+                          return SingleChildScrollView(
+                            child: Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 5.0),
+                                  child: Container(
+                                    constraints: BoxConstraints(maxHeight: 300.0),
+                                    height: double.infinity,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        border: Border(
+                                          bottom: BorderSide(color: Colors.greenAccent, width: 0.5),
+                                          left: BorderSide(color: Colors.greenAccent, width: 0.5),
+                                          right: BorderSide(color: Colors.greenAccent, width: 0.5),
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey,
+                                            offset: Offset(0.0, 0.3), //(x,y)
+                                            blurRadius: 0.5,
+                                          ),
+                                        ]),
+                                    child: ListView(
+                                      children: _store.ticketList.map<Widget>((item) => TicketItem(ticket: item)).toList(),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           );
                         },
                       ),

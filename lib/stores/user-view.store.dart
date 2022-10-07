@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/adapter_browser.dart';
 import 'package:dio/dio.dart';
 import 'package:john_deere_spa/models/ticket-response.model.dart';
@@ -25,15 +27,14 @@ abstract class _UserViewStore with Store {
   @action
   Future<TicketResponse> openTicket(TicketModel ticket) async {
     final response = await client.post(API.openTicket!, data: ticket.toJson());
-    print(response.data);
     return TicketResponse.fromMap(response.data);
   }
 
   @action
   Future<void> getAllTickets() async {
     final response = await client.get(API.getAllTickets!);
-    for (final ticket in response.data) {
-      ticketList.add(TicketResponse.formList(ticket));
+    for (final ticket in jsonDecode(response.data)) {
+      ticketList.add(TicketResponse.fromMap(ticket));
     }
   }
 }
