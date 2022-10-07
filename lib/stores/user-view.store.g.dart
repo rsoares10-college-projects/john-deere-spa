@@ -25,28 +25,12 @@ mixin _$UserViewStore on _UserViewStore, Store {
     });
   }
 
-  late final _$openTicketAsyncAction =
-      AsyncAction('_UserViewStore.openTicket', context: context);
-
-  @override
-  Future<TicketResponse> openTicket(TicketModel ticket) {
-    return _$openTicketAsyncAction.run(() => super.openTicket(ticket));
-  }
-
   late final _$getAllTicketsAsyncAction =
       AsyncAction('_UserViewStore.getAllTickets', context: context);
 
   @override
   Future<void> getAllTickets() {
     return _$getAllTicketsAsyncAction.run(() => super.getAllTickets());
-  }
-
-  late final _$getSimilarTicketsAsyncAction =
-      AsyncAction('_UserViewStore.getSimilarTickets', context: context);
-
-  @override
-  Future<void> getSimilarTickets() {
-    return _$getSimilarTicketsAsyncAction.run(() => super.getSimilarTickets());
   }
 
   @override

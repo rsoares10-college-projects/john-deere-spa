@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:john_deere_spa/dialogs/saved-ticket-dialog.dart';
+import 'package:john_deere_spa/dialogs/similar-ticketj.dialog.dart';
 import 'package:john_deere_spa/models/ticket.model.dart';
 
 final _buttonTextStyle = TextStyle(
@@ -38,7 +39,7 @@ void showOpenTicketDialog(
           children: <Widget>[
             SizedBox(height: 15.0),
             Text(
-              'Issue',
+              'Name',
               style: TextStyle(fontSize: 18.0, color: Colors.black54, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10.0),
@@ -58,7 +59,7 @@ void showOpenTicketDialog(
                   ),
                   borderRadius: BorderRadius.circular(5.0),
                 ),
-                hintText: "What's the issue?",
+                hintText: "Provide you name...",
               ),
             ),
             SizedBox(height: 20.0),
@@ -108,16 +109,21 @@ void showOpenTicketDialog(
                     style: _buttonTextStyle,
                   ),
                 ),
-                SizedBox(width: 20),
+                SizedBox(width: 15),
                 ElevatedButton(
                   onPressed: () async {
                     final ticket = TicketModel(
                       name: shortDescriptionController.text,
                       description: descriptionController.text,
                     );
-                    final ticketResponse = await store.openTicket(ticket);
-                    Navigator.pop(context);
-                    showSavedTicketDialog(context, ticketResponse);
+                    final similarTicket = await store.getSimilarTickets(ticket);
+                    if (similarTicket.similarTicket is int) {
+                      final ticketResponse = await store.openTicket(ticket);
+                      Navigator.pop(context);
+                      showSavedTicketDialog(context, ticketResponse);
+                    } else {
+                      showSimilarTicketDialog(context, ticket, similarTicket, store);
+                    }
                   },
                   child: Text(
                     'Confirm',
