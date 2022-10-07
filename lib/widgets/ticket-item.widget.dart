@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:john_deere_spa/dialogs/ticket-details.dialog.dart';
 import 'package:john_deere_spa/models/ticket-response.model.dart';
 import 'package:john_deere_spa/widgets/on-hover-button.widget.dart';
 
@@ -10,70 +11,75 @@ class TicketItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
-      return OnHoverButton(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            TicketItemTile(
-              content: ticket.dateCreation,
-              widthConstraint: 90.0,
-              border: Border(
-                right: BorderSide(color: Colors.teal, width: 0.5),
-                bottom: BorderSide(color: Colors.teal, width: 0.5),
-              ),
-            ),
-            TicketItemTile(
-              content: ticket.group,
-              widthConstraint: 120.0,
-              border: Border(
-                right: BorderSide(color: Colors.teal, width: 0.5),
-                bottom: BorderSide(color: Colors.teal, width: 0.5),
-              ),
-            ),
-            TicketItemTile(
-              content: ticket.issue.name,
-              widthConstraint: 120.0,
-              border: Border(
-                right: BorderSide(color: Colors.teal, width: 0.5),
-                bottom: BorderSide(color: Colors.teal, width: 0.5),
-              ),
-            ),
-            Expanded(
-              child: TicketItemTile(
-                content: ticket.description,
-                alignment: Alignment.centerLeft,
+      return GestureDetector(
+        onTap: () {
+          showTicketDetailsDialog(context, ticket);
+        },
+        child: OnHoverButton(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              TicketItemTile(
+                content: ticket.dateCreation,
                 widthConstraint: 90.0,
                 border: Border(
                   right: BorderSide(color: Colors.teal, width: 0.5),
                   bottom: BorderSide(color: Colors.teal, width: 0.5),
                 ),
               ),
-            ),
-            TicketItemTile(
-              content: ticket.sentiment.name,
-              widthConstraint: 120.0,
-              border: Border(
-                right: BorderSide(color: Colors.teal, width: 0.5),
-                bottom: BorderSide(color: Colors.teal, width: 0.5),
+              TicketItemTile(
+                content: ticket.group,
+                widthConstraint: 120.0,
+                border: Border(
+                  right: BorderSide(color: Colors.teal, width: 0.5),
+                  bottom: BorderSide(color: Colors.teal, width: 0.5),
+                ),
               ),
-            ),
-            TicketItemTile(
-              content: ticket.urgency.toString(),
-              widthConstraint: 100.0,
-              border: Border(
-                right: BorderSide(color: Colors.teal, width: 0.5),
-                bottom: BorderSide(color: Colors.teal, width: 0.5),
+              TicketItemTile(
+                content: ticket.issue.name,
+                widthConstraint: 120.0,
+                border: Border(
+                  right: BorderSide(color: Colors.teal, width: 0.5),
+                  bottom: BorderSide(color: Colors.teal, width: 0.5),
+                ),
               ),
-            ),
-            TicketItemTile(
-              content: ticket.impact.toString(),
-              widthConstraint: 100.0,
-              border: Border(
-                right: BorderSide(color: Colors.teal, width: 0.5),
-                bottom: BorderSide(color: Colors.teal, width: 0.5),
+              Expanded(
+                child: TicketItemTile(
+                  content: ticket.description,
+                  alignment: Alignment.centerLeft,
+                  widthConstraint: 90.0,
+                  border: Border(
+                    right: BorderSide(color: Colors.teal, width: 0.5),
+                    bottom: BorderSide(color: Colors.teal, width: 0.5),
+                  ),
+                ),
               ),
-            ),
-          ],
+              TicketItemTile(
+                content: ticket.sentiment.name,
+                widthConstraint: 120.0,
+                border: Border(
+                  right: BorderSide(color: Colors.teal, width: 0.5),
+                  bottom: BorderSide(color: Colors.teal, width: 0.5),
+                ),
+              ),
+              TicketItemTile(
+                content: ticket.urgency.toString(),
+                widthConstraint: 100.0,
+                border: Border(
+                  right: BorderSide(color: Colors.teal, width: 0.5),
+                  bottom: BorderSide(color: Colors.teal, width: 0.5),
+                ),
+              ),
+              TicketItemTile(
+                content: ticket.impact.toString(),
+                widthConstraint: 100.0,
+                border: Border(
+                  right: BorderSide(color: Colors.teal, width: 0.5),
+                  bottom: BorderSide(color: Colors.teal, width: 0.5),
+                ),
+              ),
+            ],
+          ),
         ),
       );
     });
